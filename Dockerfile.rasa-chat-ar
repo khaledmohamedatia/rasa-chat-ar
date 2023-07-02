@@ -1,6 +1,6 @@
 FROM ubuntu
 
-WORKDIR /app
+COPY . .
 
 RUN apt-get update
 RUN apt-get install -y python3-pip
@@ -11,7 +11,5 @@ RUN pip3 install transformers
 RUN pip3 install -U pip
 RUN pip3 install tensorflow --no-cache-dir
 RUN pip3 install rasa
-
-COPY . /app
 
 CMD . ./venv/bin/activate && rasa run --model ./models/20230630-185456-dynamic-loader.tar.gz --enable-api --cors "*"
